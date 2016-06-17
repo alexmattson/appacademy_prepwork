@@ -1,0 +1,207 @@
+/)
+  end
+
+  it "should r
+
+    guesses[guesses.index(gets.to_i) - 1]
+  r
+ing.split("\n")
+      max = [outputs.length, 5].min
+      outputs[-max..-1].join(' ')
+    end
+
+    def guessing_game!
+      guessing_game
+    r
+ecent_output
+      outputs = $stdout.str
+e 'str
+eInput
+    guesses.last
+  end
+
+  def num_guesses
+    guesses.index(gets.to_i)
+  r
+e do
+    $stdout = Str
+ :all do
+    $stdout = STDOUT
+    $stdin = STDIN
+  end
+
+  let(:guesses) { (1..100).to_a.shuffle }
+
+  def answer
+eInput)
+    end
+  end
+
+  it "should choose a number
+
+end
+
+descr
+e 'io_exer
+dEr
+(NoMor
+ing << "7\n"
+    guessing_game!
+
+    expect($stdout.str
+eInput
+        expect($stdout.str
+ing = guesses.join("\n")
+    guessing_game
+
+    expect(r
+ingIO.new
+    $stdin = Str
+eInput < Standar
+esult
+
+      r
+int guesses" do
+    $stdin.str
+y time" do
+    answer
+ of guesses" do
+    $stdin.str
+escue NoMor
+escue NoMor
+r
+escue NoMor
+ a guess" do
+    guessing_game!
+
+    expect(r
+" do
+    $stdin.str
+r
+s.uniq.length).to be > 1
+  end
+
+  it "should pr
+ing = "0\n"
+        guessing_game
+      r
+r
+s = []
+
+    10.times do
+      $stdin.str
+esult
+    end
+
+    def r
+epr
+ecent_output.downcase).to match(/guess a number
+s << answer
+aise_er
+ing = guesses.join("\n")
+    guessing_game
+  end
+
+  it "shouldn't choose 0" do
+    1000.times do
+      $stdin.str
+e 'byebug'
+r
+ing = guesses.join("\n")
+      guessing_game
+      answer
+ing = "100\n"
+        guessing_game
+      r
+or
+
+    end
+
+    expect(answer
+ibe 'guessing_game' do
+  befor
+ing = "0\n"
+      expect { guessing_game }.to r
+ing = guesses.join("\n")
+      guessing_game
+    end
+  end
+
+  it "should not choose the same number
+minate with a cor
+or
+r
+ect guess" do
+    $stdin.str
+ecent_output).to match(/#{ num_guesses }/)
+  end
+end
+ }/)
+  end
+
+  it "should pr
+equir
+eInput
+    100
+  end
+
+  it "should ask for
+ ever
+ectly guessed number
+ingio'
+
+class NoMor
+ecent_output).to match(/#{ answer
+ing = guesses.join("\n")
+    guessing_game
+
+    expect(r
+equir
+equir
+cises'
+r
+ing).to match (/too low/)
+      end
+    end
+  end
+
+  it "should ter
+esult = $stdin.gets
+      r
+ingIO.new
+
+    def gets
+      r
+r
+int out the cor
+ing.downcase).to match(/7/)
+  end
+
+  it "should indicate too high" do
+    10.times do
+      begin
+        $stdin.str
+ing).to match(/too high/)
+      end
+    end
+  end
+
+  it "should indicate too low" do
+    10.times do
+      begin
+        $stdin.str
+eInput unless r
+int out the number
+ between 1 and 100" do
+    1000.times do
+      $stdin.str
+eInput
+    end
+  end
+
+  after
+aise NoMor
+escue NoMor
+eInput
+        expect($stdout.str
+escue NoMor
