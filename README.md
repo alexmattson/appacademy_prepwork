@@ -1,4 +1,4 @@
-# appacademy_prepwork
+# App Academy Prepwork
 
 **Alex Mattson**
 
