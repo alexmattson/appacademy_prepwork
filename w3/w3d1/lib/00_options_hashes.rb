@@ -17,3 +17,21 @@
 # transmogrify("hello", options)
 # # options shouldn't change.
 # ```
+
+def transmogrify(str, *params)
+    parameters = {
+        :times => 1,
+        :upcase => false,
+        :reverse => false}
+    
+    final = ""
+    
+    params = Hash[*params]
+    parameters.merge!(params)
+
+    (parameters[:times]).times {final += str}
+    final.upcase! if parameters[:upcase] == true
+    final.reverse! if parameters[:reverse] == true
+    
+    final
+end
