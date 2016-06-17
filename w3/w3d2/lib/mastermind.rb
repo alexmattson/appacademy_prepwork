@@ -128,7 +128,7 @@ class Board
     puts "           guess         |       response      "
     puts "-----------------------------------------------"
     @state.each do |round, value|
-      formated_num = game.turn < 10 ? "0#{round}" : round
+      formated_num = round < 10 ? "0#{round}" : round
       puts "#{formated_num}: #{render_arr(value[0])} - #{render_arr(value[1])}"
     end
     puts "-----------------------------------------------"
