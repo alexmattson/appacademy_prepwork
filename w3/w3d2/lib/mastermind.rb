@@ -1,56 +1,64 @@
 class Code
-  attr_reader :pegs, :colors
+  attr_reader :pegs
   
-  def initialize
-    @colors = ['R', 'G', 'B', 'Y', 'O', 'P']
-    @pegs = random
+  PEGS = { 'r' => :red, 'g' => :green, 'b' => :blue, 'y' => :yellow,
+          'o' => :orange, 'p' => :purple }
+  
+  def initialize(pegs)
+    raise unless pegs.is_a? Array
+    @pegs = pegs
   end
   
-  def random 
+  def self.random 
     random = []
-    4.times {random << @colors.sample}
-    random
+    4.times {random << PEGS.keys.sample}
+    Code.new(random)
   end
   
-  def parse(input)
-    @pegs = input.upcase.split("")
+  def self.parse(input)
+    peg_list = input.downcase.split("")
+    peg_list.each { |item| raise if !(PEGS.keys.include?(item)) }
+    Code.new(peg_list)
   end
   
-  def matches(game)
+  def [](index)
+    @pegs[index]
+  end
+  
+  def ==(guess)
+    return false if guess.class != Code
+    exact_matches(guess) == 4
+  end
+  
+  def matches(code)
     match = []
-    exact_matches(game).times {match << 'x'}
-    near_matches(game).times {match << 'o'}
+    exact_matches(code).times {match << 'x'}
+    near_matches(code).times {match << 'o'}
     match
   end
   
-  def exact_matches(game)
+  def exact_matches(code)
     count = 0
-    j = 0
-    game.guess.pegs.each do |x| 
-      if game.secret_code.include?(x) &&
-         game.secret_code.each_index.select{|i| game.secret_code[i] == x}.include?(j)
-        count += 1
-      end
-      j+=1
+    (0..3).each do |x| 
+      count += 1 if self[x] == code[x]
     end
     count
   end
   
-  def near_matches(game)
+  def near_matches(code)
     secret = {}
-    game.secret_code.uniq.each{|e| secret[e]= game.secret_code.count(e)}
+    self.pegs.uniq.each{|e| secret[e]= self.pegs.count(e)}
     guess = {}
-    game.guess.pegs.uniq.each{|e| guess[e]= game.guess.pegs.count(e)}
+    code.pegs.uniq.each{|e| guess[e]= code.pegs.count(e)}
     count = 0
     guess.each do |key, value|
       if secret[key] != nil && secret[key] > value 
         count += value
       else
-        up = secret[key] == nil ? 0 : secret[key]
-        count += up
+        count += (secret[key] == nil) ? 0 : secret[key]
       end
     end
-    count - exact_matches(game)
+    count - self.exact_matches(code)
   end
   
 end
@@ -58,19 +66,32 @@ end
 class Game
   attr_reader :secret_code, :guess, :turn
   
-  def initialize
-    @secret_code = Code.new.pegs
-    @guess = Code.new
+  def initialize(secret_code = Code.random)
+    @secret_code = secret_code
     @board = Board.new
     @turn = 1
   end
   
+  def get_guess
+    puts "Please Enter your input the following format: rgby \n" +
+           "Colors: (R)ed, (G)reen, (B)lue, (Y)ellow, (O)range, (P)urple"
+    Code.parse($stdin.gets.chomp)
+  end
+  
+  def display_matches(code)
+    puts "exact maches"
+    puts secret_code.exact_matches(code)
+    puts "near matches"
+    puts secret_code.near_matches(code)
+  end
+  
   def play
+    puts "-----------------------------------------------"
+    puts "            WELCOME TO MASTERMIND              "
+    puts "-----------------------------------------------"
     loop do 
-      puts "Please Enter your input the following format: RGBY" +
-           " - (R)ed, (G)reen, (B)lue, (Y)ellow, (O)range, (P)urple"
-      @guess.parse(gets.chomp)
-      matches = @guess.matches(self)
+      @guess = get_guess
+      matches = @secret_code.matches(guess)
       @board.add_turn_to_board(@turn, @guess.pegs, matches)
       @board.render(self)
       break if matches == ['x', 'x', 'x', 'x'] || @turn == 10
@@ -79,12 +100,12 @@ class Game
            "\'o\' is a right color in the wrong place \n"
       @turn += 1
     end
-    puts "    #{@board.render_arr(@secret_code)} - Secret Code"
+    puts "    #{@board.render_arr(@secret_code.pegs)} - Secret Code"
     winner ? (puts "You Win!") : (puts "You Suck at this!")
   end
   
   def winner
-    @guess.matches(self) == ['x', 'x', 'x', 'x']
+     @secret_code.matches(@guess) == ['x', 'x', 'x', 'x']
   end
   
 end
@@ -121,4 +142,8 @@ class Board
     str
   end
   
+end
+
+if __FILE__ == $PROGRAM_NAME
+  Game.new.play
 end
