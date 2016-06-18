@@ -116,13 +116,13 @@ describe Board do
   describe "#won?" do
     context "when no ships remain" do
       it "returns true" do
-        expect(empty_board).to be_won
+        expect(empty_board.won?).to be_truthy
       end
     end
 
     context "when at least one ship remains" do
       it "returns false" do
-        expect(two_ship_board).not_to be_won
+        expect(two_ship_board.won?).not_to be_falsey
       end
     end
   end
