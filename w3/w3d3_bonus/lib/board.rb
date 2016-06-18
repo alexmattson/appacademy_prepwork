@@ -19,11 +19,6 @@ class Board
       double_iterate {|indexes, i, j| indexes << [i,j] }
     end
     
-    def find_hidden_ships
-      double_iterate(@hidden_ships) do |ships, i, j| 
-        ships << [i,j] if !(self.empty?([i,j]))
-      end
-    end
   
     #ship placement
     def place_random_ship
@@ -41,12 +36,21 @@ class Board
       end
     end
     
+    #ship information
+    def find_hidden_ships
+      double_iterate(@hidden_ships) do |ships, i, j| 
+        ships << [i,j] if !(self.empty?([i,j])) && !(ships.include?([i,j]))
+      end
+    end
+    
     def get_location(direction, start, length)
       location = []
+      direction.downcase!
       (0..length - 1).each do |i|
-        if direction == "up"
-          location << [start[0] - i, start[1]]
-        end
+        location << [start[0] - i, start[1]] if direction == "up"
+        location << [start[0] + i, start[1]] if direction == "down"
+        location << [start[0], start[1] - i] if direction == "left"
+        location << [start[0], start[1] + i] if direction == "right"
       end
       location
     end
@@ -113,7 +117,6 @@ class Board
     end
     
     def move_is_valid?(location)
-      puts location.to_s
       location.each do |space|
         return false if !(@avalibe_spaces.include?(space))
       end

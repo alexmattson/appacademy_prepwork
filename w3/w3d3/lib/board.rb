@@ -26,15 +26,6 @@ class Board
       self.grid.flatten.each { |space| count += 1 if space == :s }
       count
     end
-    # def count
-    #     count = 0
-    #     self.grid.each do |row|
-    #         row.each do |space|
-    #             count += 1 if space == :s
-    #         end
-    #     end
-    #     count
-    # end
     
     def place_random_ship
         raise if self.full?
