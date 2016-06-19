@@ -26,3 +26,11 @@ ruby solver.rb maze.txt
 ```
 
 It will output a maze-solution.txt file to the same directory. 
+
+It should be noted that currently this runs in O(n^2^)
+
+| File               | Size    | Time       |
+| ------------------ |:-------:| ----------:|
+| maze1.txt          | 16x8    |   0.002589 |
+| mazeLong.txt       | 16x49   |   0.034111 |
+| maze-2193lines.txt | 16x2193 | 139.366923 |

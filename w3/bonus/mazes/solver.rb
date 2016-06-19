@@ -29,11 +29,14 @@ class Solver
   
   #solving
   def solve
+    start = Time.now
     @start = find("S")
     @finish = find("E")
     sample_algorithm
     draw_solution
     output_solution
+    finish = Time.new
+    puts finish - start
   end
   
   def sample_algorithm
