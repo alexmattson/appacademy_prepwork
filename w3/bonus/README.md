@@ -1,5 +1,6 @@
 # Maze solver
 
+##Overview
 This is a complete asterisks maze solver Built on a simple 
 [Sample Algorithm][maze1] search path. 
 
@@ -19,6 +20,7 @@ fashion:
 ****************
 ```
 
+##Running
 Put the solver.rb and maze.txt in same dirctory and run the solver.
 
 ```sh
@@ -27,7 +29,10 @@ ruby solver.rb maze.txt
 
 It will output a maze-solution.txt file to the same directory. 
 
-It should be noted that currently this runs in O(n^2^)
+
+##Speed 
+
+It should be noted that currently this runs in O(n^2)
 
 | File               | Size    | Time       |
 | ------------------ |:-------:| ----------:|
