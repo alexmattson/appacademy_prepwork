@@ -1,7 +1,7 @@
 # Maze solver
 
 ##Overview
-This is a complete asterisk maze solver Built on a simple 
+This is a complete asterisk maze solver built on a simple 
 [Sample Algorithm][maze1] search path solution. 
 
 [maze1]: https://en.wikipedia.org/wiki/Pathfinding
