@@ -1,8 +1,8 @@
 ****************
-*XXXXXXXXX* XXE*
-*X   *   X* X***
-*X   *   X* X  *
-*X   *   X* X  *
-*X   *   X* X  *
-*S   *   XXXX  *
+*XXXXXX   *XXXE*
+*X   *X   *X ***
+*X   *X   *X   *
+*X   *X   *X   *
+*X   *X   *X   *
+*S   *XXXXXX   *
 ****************

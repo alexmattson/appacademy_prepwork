@@ -1,17 +1,21 @@
 # Maze solver
 
-In this exercise, we want to write a program that will find a route
-between two points in a maze.
+This is a complete asterisks maze solver Built on a simple 
+[Sample Algorithm][maze1] search path. 
 
-Here's an example [maze][maze1]. It has an 'S' for the start point,
-and an 'E' for an end point.
+[maze1]: https://en.wikipedia.org/wiki/Pathfinding
 
-[maze1]: mazes/maze1.txt
+It takes a text file as an input that has a maze layed out in the following 
+fashion:
 
-You should write a program that will read in the maze, try to explore a
-path through it to the end, and then print out a completed path [like
-so][maze1-solution]. If there is no such path, it should inform the
-user.
+'''****************
+*         *   E*
+*    *    *  ***
+*    *    *    *
+*    *    *    *
+*    *    *    *
+*S   *         *
+****************'''
 
 Make your program run as a command line script, taking in the name of
 a maze file on the command line.
